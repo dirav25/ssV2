@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>SS Textile ERP</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <img
+            src="assets/logo.png"
+            id="sidebarLogo"
+            alt="logo">
+
+        <h2>SS Textile</h2>
+
+        <span>ERP Billing</span>
+
+    </div>
+
+    <nav>
+
+        <button class="nav-btn active">
+            Dashboard
+        </button>
+
+        <button class="nav-btn">
+            Invoices
+        </button>
+
+        <button class="nav-btn">
+            Customers
+        </button>
+
+        <button class="nav-btn">
+            Products
+        </button>
+
+        <button class="nav-btn">
+            Reports
+        </button>
+
+        <button class="nav-btn">
+            Settings
+        </button>
+
+    </nav>
+
+</aside>
+
+<!-- MAIN -->
+
+<div class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>
+                SS Textile ERP
+            </h1>
+
+            <p>
+                GST Billing & Invoice Management
+            </p>
+
+        </div>
+
+        <div class="top-actions">
+
+            <button id="backupBtn">
+                Backup
+            </button>
+
+            <button id="restoreBtn">
+                Restore
+            </button>
+
+            <button id="newInvoiceBtn">
+                New Invoice
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard-cards">
+
+        <div class="dashboard-card">
+
+            <span>
+                Total Sales
+            </span>
+
+            <h2 id="totalSalesCard">
+                ₹0
+            </h2>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <span>
+                Total Invoices
+            </span>
+
+            <h2 id="totalInvoicesCard">
+                0
+            </h2>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <span>
+                Customers
+            </span>
+
+            <h2 id="totalCustomersCard">
+                0
+            </h2>
+
+        </div>
+
+        <div class="dashboard-card">
+
+            <span>
+                GST Collected
+            </span>
+
+            <h2 id="totalGSTCard">
+                ₹0
+            </h2>
+
+        </div>
+
+    </section>
+
+    <!-- FORM AREA -->
+
+    <section class="invoice-grid">
+
+        <!-- LEFT -->
+
+        <div class="panel">
+
+            <h3>
+                Customer Details
+            </h3>
+
+            <input
+                id="customerName"
+                placeholder="Customer Name">
+
+            <input
+                id="customerMobile"
+                placeholder="Mobile Number">
+
+            <input
+                id="customerGST"
+                placeholder="GST Number">
+
+            <textarea
+                id="customerAddress"
+                rows="4"
+                placeholder="Address"></textarea>
+
+            <button
+                id="saveCustomerBtn">
+                Save Customer
+            </button>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="panel">
+
+            <h3>
+                Invoice Details
+            </h3>
+
+            <input
+                id="invoiceNo"
+                readonly>
+
+            <input
+                id="invoiceDate"
+                type="date">
+
+            <input
+                id="paymentTerms"
+                value="15 DAYS CREDIT">
+
+            <input
+                id="deliveryType"
+                value="DOOR DELIVERY">
+
+        </div>
+
+    </section>
+
+    <!-- ITEM ENTRY -->
+
+    <section class="panel">
+
+        <h3>
+            Add Product
+        </h3>
+
+        <div class="item-grid">
+
+            <input
+                id="itemDescription"
+                placeholder="Description">
+
+            <input
+                id="itemHSN"
+                placeholder="HSN">
+
+            <input
+                id="itemQty"
+                type="number"
+                placeholder="Qty">
+
+            <input
+                id="itemRate"
+                type="number"
+                placeholder="Rate">
+
+            <select id="itemGST">
+
+                <option value="5">
+                    GST 5%
+                </option>
+
+                <option value="12">
+                    GST 12%
+                </option>
+
+                <option value="18">
+                    GST 18%
+                </option>
+
+                <option value="28">
+                    GST 28%
+                </option>
+
+            </select>
+
+            <button id="addItemBtn">
+                Add Item
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ITEMS -->
+
+    <section class="panel">
+
+        <h3>
+            Invoice Items
+        </h3>
+
+        <table id="itemsTable">
+
+            <thead>
+
+            <tr>
+
+                <th>#</th>
+                <th>Description</th>
+                <th>HSN</th>
+                <th>Qty</th>
+                <th>Rate</th>
+                <th>Amount</th>
+                <th>Action</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody></tbody>
+
+        </table>
+
+    </section>
+
+    <!-- TOTALS -->
+
+    <section class="summary-section">
+
+        <div class="amount-card">
+
+            <h4>
+                Invoice Summary
+            </h4>
+
+            <div>
+                Subtotal
+                <span id="subtotal">
+                    ₹0
+                </span>
+            </div>
+
+            <div>
+                CGST
+                <span id="cgst">
+                    ₹0
+                </span>
+            </div>
+
+            <div>
+                SGST
+                <span id="sgst">
+                    ₹0
+                </span>
+            </div>
+
+            <div class="grand-total">
+
+                Total
+
+                <span id="grandTotal">
+                    ₹0
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ACTIONS -->
+
+    <section class="action-bar">
+
+        <button id="saveInvoiceBtn">
+            Save Invoice
+        </button>
+
+        <button id="printInvoiceBtn">
+            Print
+        </button>
+
+        <button id="pdfInvoiceBtn">
+            Download PDF
+        </button>
+
+        <button id="whatsappBtn">
+            WhatsApp
+        </button>
+
+    </section>
+
+    <!-- HISTORY -->
+
+    <section class="panel">
+
+        <h3>
+            Invoice History
+        </h3>
+
+        <table id="historyTable">
+
+            <thead>
+
+            <tr>
+
+                <th>Invoice</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Actions</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody></tbody>
+
+        </table>
+
+    </section>
+
+</div>
+
+<div id="invoicePrintArea"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/invoice.js"></script>
+<script src="js/pdf.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
